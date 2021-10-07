@@ -8,6 +8,7 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 
 
 
@@ -17,7 +18,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     HeroeComponent,
     HomeComponent,
     ListadoComponent,
-    BuscarComponent
+    BuscarComponent,
+    HeroeTarjetaComponent
   ],
   imports: [
     CommonModule,
