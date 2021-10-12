@@ -5,21 +5,25 @@ import { Heroe } from '../interface/heroes.interface';
 import { environment } from '../../../environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class HeroesService {
 
-  private baseUrl: string = environment.baseUrl;
+    private baseUrl: string = environment.baseUrl;
 
-  constructor(private http: HttpClient) {
-  }
+    constructor(private http: HttpClient) {
+    }
 
-  getHeroes(): Observable<Heroe[]> {
-    return this.http.get<Heroe[]>(`${this.baseUrl}/heroes`)
-  }
+    getHeroes(): Observable<Heroe[]> {
+        return this.http.get<Heroe[]>(`${this.baseUrl}/heroes`)
+    }
 
-  getHeroeById(id: string): Observable<Heroe> {
-    return this.http.get<Heroe>(`${this.baseUrl}/heroes/${id}`)
-  }
+    getHeroeById(id: string): Observable<Heroe> {
+        return this.http.get<Heroe>(`${this.baseUrl}/heroes/${id}`)
+    }
+
+    agregarHeroe(heroe: Heroe): Observable<Heroe> {
+        return this.http.post<Heroe>(`${this.baseUrl}/heroes`, heroe)
+    }
 
 }
