@@ -11,6 +11,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
 import { FormsModule } from '@angular/forms';
+import { ConfirmarComponent } from './components/confirmar/confirmar.component';
 
 
 
@@ -23,6 +24,7 @@ import { FormsModule } from '@angular/forms';
         BuscarComponent,
         HeroeTarjetaComponent,
         ImagenPipe,
+        ConfirmarComponent,
     ],
     imports: [
         CommonModule,
