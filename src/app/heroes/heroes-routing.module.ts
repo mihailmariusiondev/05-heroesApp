@@ -5,36 +5,19 @@ import { AgregarComponent } from './pages/agregar/agregar.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
 import { HeroeComponent } from './pages/heroe/heroe.component';
 import { HomeComponent } from './pages/home/home.component';
+import { EditarComponent } from './pages/editar/editar/editar.component';
 
-const routes : Routes = [
+const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
     children: [
-      {
-        path: 'listado',
-        component: ListadoComponent
-      },
-      {
-        path: 'agregar',
-        component: AgregarComponent
-      },
-      {
-        path: 'editar/:id',
-        component: AgregarComponent
-      },
-      {
-        path: 'buscar',
-        component: BuscarComponent
-      },
-      {
-        path: ':id',
-        component: HeroeComponent
-      },
-      {
-        path: '**',
-        redirectTo: 'listado'
-      }
+      { path: 'listado', component: ListadoComponent },
+      { path: 'agregar', component: AgregarComponent },
+      { path: 'editar/:id', component: EditarComponent },
+      { path: 'buscar', component: BuscarComponent },
+      { path: ':id', component: HeroeComponent },
+      { path: '**', redirectTo: 'listado' }
     ]
   }
 ]
@@ -44,7 +27,7 @@ const routes : Routes = [
   imports: [
     RouterModule.forChild(routes)
   ],
-  exports:[
+  exports: [
     RouterModule
   ]
 })
