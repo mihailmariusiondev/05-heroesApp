@@ -10,28 +10,26 @@ import { MaterialModule } from '../material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HeroeTarjetaComponent } from './components/heroe-tarjeta/heroe-tarjeta.component';
 import { ImagenPipe } from './pipes/imagen.pipe';
-import { EditarComponent } from './pages/editar/editar/editar.component';
 import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [
-    AgregarComponent,
-    HeroeComponent,
-    HomeComponent,
-    ListadoComponent,
-    BuscarComponent,
-    HeroeTarjetaComponent,
-    ImagenPipe,
-    EditarComponent
-  ],
-  imports: [
-    CommonModule,
-    HeroesRoutingModule,
-    MaterialModule,
-    FlexLayoutModule,
-    FormsModule
-  ]
+    declarations: [
+        AgregarComponent,
+        HeroeComponent,
+        HomeComponent,
+        ListadoComponent,
+        BuscarComponent,
+        HeroeTarjetaComponent,
+        ImagenPipe,
+    ],
+    imports: [
+        CommonModule,
+        HeroesRoutingModule,
+        MaterialModule,
+        FlexLayoutModule,
+        FormsModule
+    ]
 })
 export class HeroesModule { }

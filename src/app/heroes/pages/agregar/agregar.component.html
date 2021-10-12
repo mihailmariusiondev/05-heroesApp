@@ -1,9 +1,16 @@
-<p>agregar works!</p>
-<h1>
-    {{ ( heroe.id )? 'Editar' : 'Nuevo' }}
-    Héroe
-    <small>{{ heroe.superhero }}</small>
-</h1>
+<div fxLayout="row">
+
+    <a mat-button
+       color="warn"
+       routerLink="['/heroes/listado']">
+        <mat-icon mat-list-icon>arrow_back</mat-icon>
+    </a>
+
+    <h1>
+        {{ ( heroe.id )? 'Editar' : 'Nuevo' }} Héroe
+        <small>{{ heroe.superhero }}</small>
+    </h1>
+</div>
 
 <div fxLayout="row"
      fxLayoutGap="40px"
