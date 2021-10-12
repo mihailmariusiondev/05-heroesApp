@@ -89,6 +89,7 @@ export class AgregarComponent implements OnInit {
             // data: {...this.heroe}    // readonly
         })
 
+        // TODO make it switchmap instead of multiple observables
         dialog.afterClosed()
             .subscribe(
                 // get result from dialog
