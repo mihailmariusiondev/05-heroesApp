@@ -80,12 +80,24 @@
 
         <br>
 
-        <button mat-raised-button
-                (click)="guardar()"
-                color="primary">
-            <mat-icon>edit</mat-icon>
-            Guardar
-        </button>
+        <div fxLayout="row">
+            <button mat-raised-button
+                    color="primary"
+                    (click)="guardar()">
+                <mat-icon>edit</mat-icon>
+                Guardar
+            </button>
+
+            <span class="spacer"></span>
+
+            <button *ngIf="heroe.id"
+                    mat-raised-button
+                    color="warn"
+                    (click)="borrarHeroe()">
+                <mat-icon>remove</mat-icon>
+                Borrar
+            </button>
+        </div>
 
 
     </div>

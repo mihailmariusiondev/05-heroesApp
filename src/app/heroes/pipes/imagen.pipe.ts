@@ -8,7 +8,6 @@ export class ImagenPipe implements PipeTransform {
 
     transform(heroe: Heroe): string {
 
-
         if (!heroe.id && !heroe.alt_img) {
             // NO tiene id, default image
             return 'assets/no-image.png'
