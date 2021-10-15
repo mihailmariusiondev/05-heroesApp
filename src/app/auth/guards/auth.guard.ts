@@ -14,11 +14,19 @@ export class AuthGuard implements CanLoad {
 
     }
 
-    // canActivate(
-    //     route: ActivatedRouteSnapshot,
-    //     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    //     return true;
-    // }
+    canActivate(
+        route: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
+        // If we have user id, that means he's logged in
+        if (this.authService.auth.id) {
+            console.log("canActivate() ACCESO PERMITIDO por el AuthGuard");
+
+            return true;
+        }
+
+        console.log("canActivate() BLOQUEADO por el AuthGuard");
+        return false;
+    }
 
     // SOLO SIRVE PARA PREVENIR QUE EL USUARIO CARGUE EL MODULO
     // SI YA ESTABA PREVIAMENTE CARGADO EL MODULO, LA PERSONA VA A PODER ENTRAR
@@ -29,12 +37,12 @@ export class AuthGuard implements CanLoad {
 
         // If we have user id, that means he's logged in
         if (this.authService.auth.id) {
-            console.log("ACCESO PERMITIDO por el AuthGuard");
+            console.log("canLoad() ACCESO PERMITIDO por el AuthGuard");
 
             return true;
         }
 
-        console.log("BLOQUEADO por el AuthGuard");
+        console.log("canLoad() BLOQUEADO por el AuthGuard");
 
         return false;
     }
