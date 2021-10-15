@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanLoad, Route, RouterStateSnapshot, UrlSegment, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +10,8 @@ import { AuthService } from '../services/auth.service';
 export class AuthGuard implements CanLoad {
 
     constructor(
-        private authService: AuthService
+        private authService: AuthService,
+        private router: Router
     ) {
 
     }
@@ -17,33 +19,36 @@ export class AuthGuard implements CanLoad {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-        // If we have user id, that means he's logged in
-        if (this.authService.auth.id) {
-            console.log("canActivate() ACCESO PERMITIDO por el AuthGuard");
 
-            return true;
-        }
-
-        console.log("canActivate() BLOQUEADO por el AuthGuard");
-        return false;
+        // Si el observable de verificaAutenticacion() devuelve
+        // false, NO existe el token en el localStorage (no está autenticado)
+        // true, existe en el localStorage (está autenticado)
+        return this.authService.verificaAutenticacion()
+            .pipe(
+                tap(estaAutenticado => {
+                    if (!estaAutenticado) {
+                        this.router.navigate(['/auth/login'])
+                    }
+                })
+            );
     }
 
-    // SOLO SIRVE PARA PREVENIR QUE EL USUARIO CARGUE EL MODULO
-    // SI YA ESTABA PREVIAMENTE CARGADO EL MODULO, LA PERSONA VA A PODER ENTRAR
-    // canLoad() SOLO RESTRINGE SI PUEDE CARGAR EL MODULO
+    // Si el observable de verificaAutenticacion() devuelve
+    // false, NO existe el token en el localStorage (no está autenticado)
+    // true, existe en el localStorage (está autenticado)
     canLoad(
         route: Route,
         segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
 
-        // If we have user id, that means he's logged in
-        if (this.authService.auth.id) {
-            console.log("canLoad() ACCESO PERMITIDO por el AuthGuard");
-
-            return true;
-        }
-
-        console.log("canLoad() BLOQUEADO por el AuthGuard");
-
-        return false;
+        // Si el observable de verificaAutenticacion() devuelve false, NO existe el token en el localStorage (no está autenticado), si devuelve true, existe en el localStorage
+        return this.authService.verificaAutenticacion()
+            .pipe(
+                tap(estaAutenticado => {
+                    // Si NO está autenticado, redirección a login
+                    if (!estaAutenticado) {
+                        this.router.navigate(['/auth/login'])
+                    }
+                })
+            );
     }
 }
